@@ -1,0 +1,7 @@
+menu "Device drivers"
+
+config ENABLE_UART
+    bool "Enable UART device"
+    default y
+
+endmenu
