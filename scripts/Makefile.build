@@ -1,0 +1,22 @@
+ARCH            := $(ARCH)
+CROSS_COMPILE   := $(CROSS_COMPILE)
+
+AS      := $(CROSS_COMPILE)as
+AR      := $(CROSS_COMPILE)ar
+CC      := $(CROSS_COMPILE)gcc
+LD      := $(CROSS_COMPILE)gcc
+OBJCOPY := $(CROSS_COMPILE)objcopy
+
+CFLAGS  := -Wall -g -Iinclude -nostdlib -ffreestanding -fno-stack-protector
+LDFLAGS := -nostdlib -lgcc -lm
+
+
+.SUFFIXES: .s .c
+
+.c.o:
+    @echo "  CC $<"
+    @$(CC) -c $< $(CFLAGS) -o $@
+
+.s.o:
+    @echo "  AS $<"
+    @$(AS) -g $< -o $@
