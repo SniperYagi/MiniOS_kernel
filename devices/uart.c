@@ -2,7 +2,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <devices/uart.h>
-#include <generated/autoconf.h>
 
 
 static PL011 *uart0 = (PL011 *)UART0_BASE_ADDR;
