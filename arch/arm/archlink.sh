@@ -20,6 +20,3 @@ OBJCOPY="arm-none-eabi-objcopy"
 
 
 $LD -T $KERNEL_LINKER $KERNEL_PARTIAL -o $KERNEL_FINAL $KERNEL_LDFLAGS
-
-# Don't create binary copy. VersatilePB board only supports ELF loading in QEMU when passing -kernel option
-#$OBJCOPY -Obinary $KERNEL_FINAL $KERNEL_BINARY
