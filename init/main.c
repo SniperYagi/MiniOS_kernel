@@ -4,7 +4,7 @@
 
 
 int main(void) {
-    uart_puts("*** Kernel running ***\n");
+    uart_puts("MiniOS kernel started\n");
     while(1);
 }
 
