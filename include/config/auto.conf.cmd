@@ -1,5 +1,4 @@
 deps_config := \
-	init/Kconfig \
 	devices/Kconfig \
 	arch/arm/Kconfig \
 	Kconfig \
