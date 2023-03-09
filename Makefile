@@ -2,6 +2,7 @@ AS := arm-none-eabi-as
 AR := arm-none-eabi-ar
 CC := arm-none-eabi-gcc
 LD := arm-none-eabi-gcc
+OBJCOPY := arm-none-eabi-objcopy
 
 
 ASM_OBJS := \
@@ -14,18 +15,17 @@ C_OBJS := \
 
 OBJS := $(ASM_OBJS) $(C_OBJS)
 
-CFLAGS := -g -Wall -nostdlib -fno-stack-protector -ffreestanding -fPIC -Iinclude
-LDFLAGS := -nostdlib -lgcc -lm -Wl,-Map=$(TARGET).map
-
 TARGET := kernel
 
+ASFLAGS := -mcpu=arm926ej-s -g
+CFLAGS := -mcpu=arm926ej-s -g -Wall -nostdlib -fno-stack-protector -ffreestanding -Iinclude
+LDFLAGS := -mcpu=arm926ej-s -nostdlib -lgcc -lm -Wl,-Map=$(TARGET).map
 
-.SUFFIXES: .s .c .o .elf .bin
+.SUFFIXES: .s .c
 
 $(TARGET).elf: $(OBJS)
-	@echo "  LD $@"
-	@$(LD) -T arch/arm/kernel.ld $^ -o $@ $(LDFLAGS)
-
+	@$(LD) -r $^ -o arch/arm/kernel.o $(LDFLAGS)
+	@./arch/arm/archlink.sh
 
 .c.o:
 	@echo "  CC $<"
@@ -33,8 +33,12 @@ $(TARGET).elf: $(OBJS)
 
 .s.o:
 	@echo "  AS $<"
-	@$(AS) -g $< -o $@
+	@$(AS) -g $< $(ASFLAGS) -o $@
 
 
 clean:
 	@rm -f $(OBJS) *.elf *.bin *.map *.txt *.dat
+	@rm -f arch/arm/*.o arch/arm/*.a
+
+run:
+	@./scripts/boot

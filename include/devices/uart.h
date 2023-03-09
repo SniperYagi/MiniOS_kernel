@@ -91,5 +91,6 @@ typedef enum {
 void uart_init(uart_config *cfg);
 void uart_putc(char c);
 void uart_puts(char *s);
+int printf(char *fmt, ...);
 
 #endif

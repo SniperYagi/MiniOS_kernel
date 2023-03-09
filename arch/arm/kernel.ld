@@ -1,4 +1,3 @@
-/* Entry point for linker script. By default this should be the reset handler */
 ENTRY(_reset)
 
 MEMORY
@@ -9,7 +8,8 @@ MEMORY
 SECTIONS
 {
     .text : {
-        __stext = .;
+
+    __stext = .;
         *(.text*)
         __etext = .;
     } > ram

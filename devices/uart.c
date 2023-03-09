@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdint.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <devices/uart.h>
 
