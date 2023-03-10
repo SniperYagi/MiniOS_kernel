@@ -84,7 +84,7 @@ typedef volatile struct __attribute__((packed)) {
         uint32_t pic_vect_cntl14;
         uint32_t pic_vect_cntl15;
     } pic_vect_cntl[60];
-};
+} PL190;
 
 
 #define SIC_USB     (1 << 26)
@@ -110,6 +110,6 @@ typedef volatile struct __attribute__((packed)) {
     const uint32_t sic_pic_enable;
     uint32_t sic_picen_set;
     uint32_t sic_picen_clr;
-};
+} SIC;
 
 #endif
