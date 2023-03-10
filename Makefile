@@ -10,6 +10,7 @@ ASM_OBJS := \
 
 C_OBJS := \
 	arch/arm/arch.o \
+	arch/arm/cpu/vic.o \
 	devices/uart.o \
 	init/main.o
 
