@@ -21,6 +21,8 @@ SECTIONS
         *(.rodata*)
     } :rodata
 
+    . += 0x1000;
+
     .data ALIGN(0x1000) : {
         *(.data*)
     } :data
