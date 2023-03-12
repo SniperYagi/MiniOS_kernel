@@ -1,26 +1,22 @@
-AS := arm-none-eabi-as
-AR := arm-none-eabi-ar
-CC := arm-none-eabi-gcc
-LD := arm-none-eabi-gcc
-OBJCOPY := arm-none-eabi-objcopy
+AS := aarch64-linux-gnu-as
+AR := aarch64-linux-gnu-ar
+CC := aarch64-linux-gnu-gcc
+LD := aarch64-linux-gnu-gcc
+OBJCOPY := aarch64-linux-gnu-objcopy
 
-
-ASM_OBJS := \
-	arch/arm/boot/start.o
 
 C_OBJS := \
 	arch/arm/arch.o \
-	arch/arm/cpu/vic.o \
-	devices/uart.o \
-	init/main.o
+	init/main.o \
+	kernel/string.o
 
 OBJS := $(ASM_OBJS) $(C_OBJS)
 
 TARGET := kernel
 
-ASFLAGS := -mcpu=arm926ej-s -g
-CFLAGS := -mcpu=arm926ej-s -g -Wall -nostdlib -fno-stack-protector -ffreestanding -Iinclude
-LDFLAGS := -mcpu=arm926ej-s -nostdlib -lgcc -lm -Wl,-Map=$(TARGET).map
+ASFLAGS := -g
+CFLAGS := -g -Wall -nostdlib -fno-stack-protector -ffreestanding -Iinclude -fPIC
+LDFLAGS := -nostdlib -lgcc -Wl,-Map=$(TARGET).map
 
 .SUFFIXES: .s .c
 

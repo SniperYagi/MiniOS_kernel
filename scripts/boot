@@ -1,9 +1,0 @@
-#!/bin/bash
-
-
-qemu-system-arm \
-    -M versatilepb \
-    -m 128M
-    -cpu arm926 \
-    -kernel kernel.elf \
-    -nographic

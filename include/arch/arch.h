@@ -3,4 +3,6 @@
 
 #include <stdint.h>
 
+void remap_vect_table(void);
+
 #endif

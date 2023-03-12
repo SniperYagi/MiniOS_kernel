@@ -1,44 +1,32 @@
-ENTRY(_reset)
+ENTRY(entry)
 
-MEMORY
+PHDRS
 {
-    ram     (rwx)   :   ORIGIN = 0x00010000, LENGTH = 128M
+    text    PT_LOAD    FLAGS((1 << 0) | (1 << 2)) ; /* Execute + Read */
+    rodata  PT_LOAD    FLAGS((1 << 2)) ;            /* Read only */
+    data    PT_LOAD    FLAGS((1 << 1) | (1 << 2)) ; /* Write + Read */
 }
 
 SECTIONS
 {
-    .text : {
+    . = 0xffffffff80000000;
 
-    __stext = .;
+    .text ALIGN(0x1000) : {
         *(.text*)
-        __etext = .;
-    } > ram
+    } :text
 
-    .data : {
-        __sdata = .;
-        *(.data*)
+    . += 0x1000;
 
-    } > ram
-
-    .rodata : {
+    .rodata ALIGN(0x1000) : {
         *(.rodata*)
-    } > ram
+    } :rodata
 
-    .bss (NOLOAD) : {
+    .data ALIGN(0x1000) : {
+        *(.data*)
+    } :data
+
+    .bss ALIGN(0x1000) : {
         *(.bss*)
         *(COMMON)
-    } > ram
-
-    /* 215KB stack space */
-    . = ALIGN(8);
-    . = . + 0x350000;
-    __stack_top = .;
-
-    . = ALIGN(8);
-    . = . + 0x350000;
-    __irq_stack_top = .;
-
-    . = ALIGN(8);
-    . = . + 0x350000;
-    __fiq_stack_top = .;
+    } :data
 }

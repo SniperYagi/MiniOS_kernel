@@ -74,6 +74,9 @@ void uart_init(uart_config *cfg) {
     tmp_lcrh |= UART_LCRH_FEN;
     uart0->uartlcrh = tmp_lcrh;
 
+    /* Enable UART IRQ's */
+    //uart0->uartimsc |= UART_IMSC;
+
     /* Enable UART */
     uart0->uartcr |= UART_EN;
 }

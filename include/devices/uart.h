@@ -44,6 +44,7 @@
 #define UART_ILPR   (1 << 7)
 #define UART_IBRD   (1 << 15)
 #define UART_FBRD   (1 << 5)
+#define UART_IMSC   (1 << 4)
 
 
 typedef volatile struct __attribute__((packed)) {  
