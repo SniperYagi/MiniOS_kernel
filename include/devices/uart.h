@@ -4,9 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define UART0_BASE_ADDR (0x101f1000)
-#define UART1_BASE_ADDR (0x101f2000)
-#define UART2_BASE_ADDR (0x101f3000)
+#define UART0_BASE_ADDR (0x09000000)
 
 #define UART_RI     (1 << 8)
 #define UART_TXFE   (1 << 7)
